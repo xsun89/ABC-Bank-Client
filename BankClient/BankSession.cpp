@@ -46,7 +46,7 @@ const string& BankSession::GetAttribute(const string& k)
 void BankSession::Recv()
 {
 	int ret;
-	ret = socket_->RecvN(buffer_, sizeof(buffer_));
+	ret = socket_->RecvN(buffer_, sizeof(ResponseHead));
 	if(ret == 0)
 		throw Exception("Server is off line");
 	else if(ret != sizeof(ResponseHead))
