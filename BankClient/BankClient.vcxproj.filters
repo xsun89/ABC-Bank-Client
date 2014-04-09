@@ -25,6 +25,9 @@
     <Filter Include="Public">
       <UniqueIdentifier>{81d442f9-fbe8-46ba-9d5b-7e4363061db0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Config">
+      <UniqueIdentifier>{b3e4428e-2bf5-418e-aeb3-20a48dea6b32}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Public\Date.cpp">
@@ -353,5 +356,10 @@
     <ClInclude Include="TransactionManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="client.conf">
+      <Filter>Config</Filter>
+    </None>
   </ItemGroup>
 </Project>

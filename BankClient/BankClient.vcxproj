@@ -175,6 +175,9 @@
     <ClInclude Include="UI\Validator.h" />
     <ClInclude Include="UI\WithdrawalForm.h" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="client.conf" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
