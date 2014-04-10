@@ -1,10 +1,17 @@
 #include "../Public/Socket.h"
 #include "Client.h"
+#include <sstream>
 
+using namespace std;
 
-Client::Client()
+Client::Client() : config_("client.conf")
 {
 	Socket::Startup();
+	serverIp_ = config_.GetProperty("CLIENT.SERVER_IP");
+	string port = config_.GetProperty("CLIENT.PORT");
+	stringstream ss;
+	ss<<port;
+	ss>>port_;
 }
 
 

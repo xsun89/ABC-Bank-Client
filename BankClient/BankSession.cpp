@@ -9,8 +9,8 @@ BankSession::BankSession() : socket_(new Socket), errorCode_(0)
 {
 	socket_->Create();
 	if(!socket_->Connect(
-		"127.0.0.1",
-		8888)
+		Singleton<Client>::Instance().GetServerIp().c_str(),
+		Singleton<Client>::Instance().GetPort())
 		)
 		throw Exception("Connection Failed");
 	responsePack_ = (ResponsePack*)buffer_;
@@ -61,7 +61,7 @@ void BankSession::Recv()
 	ret = socket_->RecvN(responsePack_->buf, len);
 	if(ret == 0)
 		throw Exception("Server is off line");
-	else if(ret != sizeof(ResponseHead))
+	else if(ret != len)
 		throw Exception("Data package wrong 2");
 
 	unsigned char hash[16];
