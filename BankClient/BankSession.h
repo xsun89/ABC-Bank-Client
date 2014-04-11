@@ -83,6 +83,9 @@ public:
 	void SetAttribute(const string& k, const string& v);
 	const string& GetAttribute(const string& k);
 	ResponsePack* GetResponsePack() const { return responsePack_; }
+	void SetResponse(const string& k, const string& v);
+	const string& GetResponse(const string& k);
+
 
 private:
 	uint16 cmd_;

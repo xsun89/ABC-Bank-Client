@@ -5,8 +5,13 @@
 #include "Validator.h"
 
 #include "../JFC/JMessageBox.h"
+#include "../../Public/Exception.h"
+#include "../BankSession.h"
+#include "../TransactionManager.h"
+
 
 using namespace UI;
+using namespace PUBLIC;
 
 OpenAccountForm::OpenAccountForm()
 	: JForm(0, 0, 0, 0, 0)
@@ -206,4 +211,20 @@ void OpenAccountForm::Submit()
 	}
 
 	// 以下为实际的开户操作
+	try
+	{
+		BankSession bs;
+		bs.SetCmd(CMD_OPEN_ACCOUNT);
+		bs.SetAttribute("name", editName_->GetText());
+		bs.SetAttribute("pass", editPass_->GetText());
+		bs.SetAttribute("id", editId_->GetText());
+		bs.SetAttribute("money", editMoney_->GetText());
+		
+		Singleton<TransactionManager>::Instance().DoAction(bs);
+
+	}
+	catch (Exception& e)
+	{
+	}
+	
 }

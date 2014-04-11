@@ -80,3 +80,13 @@ void BankSession::Recv()
 	responsePack_->head.cmd = cmd;
 	responsePack_->head.len = len;
 }
+
+void BankSession::SetResponse(const string& k, const string& v)
+{
+	response_[k] = v;
+}
+
+const string& BankSession::GetResponse(const string& k)
+{
+	return response_[k];
+}
