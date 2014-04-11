@@ -197,10 +197,8 @@ void MainMenuForm::OnKeyEvent(JEvent* e)
 }
 void MainMenuForm::OpenAccount()
 {
-	std::vector<std::string> v;
-	v.push_back(" OK ");
-	std::string msg = "OpenAccount";
-	JMessageBox::Show("-MESSAGE-", msg, v);
+	JForm* form = Singleton<FormManager>::Instance().Get("OpenAccountForm");
+	form->Show();
 }
 
 void MainMenuForm::Deposit()

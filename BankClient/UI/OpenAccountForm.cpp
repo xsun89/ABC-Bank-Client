@@ -221,10 +221,32 @@ void OpenAccountForm::Submit()
 		bs.SetAttribute("money", editMoney_->GetText());
 		
 		Singleton<TransactionManager>::Instance().DoAction(bs);
+		if (bs.GetErrorCode() == 0)
+		{
+			std::vector<std::string> v;
+			v.push_back(" YES ");
+			std::string msg = "OK";
 
+			JMessageBox::Show("-ERROR-", msg,v);
+			ClearWindow();
+			Show();
+			editPass2_->Show();
+			return;
+
+		}
+		
 	}
 	catch (Exception& e)
 	{
+		std::vector<std::string> v;
+		v.push_back(" YES ");
+
+		JMessageBox::Show("-ERROR-", e.what(), v);
+		ClearWindow();
+		Show();
+
+		return;
+
 	}
 	
 }

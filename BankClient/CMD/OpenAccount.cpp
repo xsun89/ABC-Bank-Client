@@ -53,7 +53,27 @@ void OpenAccount::Execute(BankSession& session)
 	session.Send(jos.Data(), jos.Length());	
 	session.Recv();	
 	JInStream jis((const char*)session.GetResponsePack(), session.GetResponsePack()->head.len+sizeof(ResponseHead));
-	
+	jis.Skip(4);
+	uint16 cnt; 
+	uint16 seq;
+	int16 error_code;
+	jis >> cnt >> seq >> error_code;
+	char error_msg[31];
+	jis.ReadBytes(error_msg, 30);
+	session.SetErrorCode(error_code);
+	session.SetErrorMsg(error_msg);
+
+	if(error_code == 0)
+	{
+		char account_id[7] = {0};
+		jis.ReadBytes(account_id, 6);
+
+		string open_date;
+		jis >> open_date;
+
+		session.SetResponse("account_id", account_id);
+		session.SetResponse("open_date", open_date);
+	}
 }
 
 
